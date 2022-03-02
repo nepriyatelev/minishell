@@ -6,7 +6,7 @@
 /*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 16:13:11 by modysseu          #+#    #+#             */
-/*   Updated: 2022/02/19 15:28:44 by modysseu         ###   ########.fr       */
+/*   Updated: 2022/03/02 21:26:08 by modysseu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,24 @@ int	increment_shlvl(t_list **list_env)
 {
 	char	*shlvl_value;
 	int		shlvl;
-	t_list	*tmp;
+	t_list	*step;
 	
-	tmp = *list_env;
+	step = *list_env;
 	shlvl_value = getenv("SHLVL");
 	if (ft_strcmp(shlvl_value, "") == 0)
-		return (0);
+		return (1);
 	shlvl = ft_atoi(shlvl_value) + 1;
-	while (tmp)
+	while (step)
 	{
-		if (ft_strncmp("SHLVL", tmp->content, 5) == 0)
+		if (ft_strncmp("SHLVL", step->content, 5) == 0)
 		{
-			free(tmp->content);
- 			tmp->content = ft_strjoin("SHLVL=", ft_itoa(shlvl));
-			if (tmp->content == NULL)
+			free(step->content);
+ 			step->content = ft_strjoin("SHLVL=", ft_itoa(shlvl));
+			if (step->content == NULL)
 				return (1);
 			return (0);
 		}
-		tmp = tmp->next;
+		step = step->next;
 	}
 	return (0);
 }

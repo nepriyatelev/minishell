@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: medeana <medeana@student.42.fr>            +#+  +:+       +#+        */
+/*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 13:45:24 by modysseu          #+#    #+#             */
-/*   Updated: 2022/03/02 18:07:08 by medeana          ###   ########.fr       */
+/*   Updated: 2022/03/02 20:23:03 by modysseu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,8 @@ t_cmd *init_list(t_cmd *list, char **env, char *cmd)
 int	main(int argc, char **argv, char **env)
 {
 	// kill(-1, SIGTERM);
-	t_shell	minishell;
+	// t_shell	minishell;
+	t_list	*list_env;
 	t_cmd	*ex_cmd;
 	char	*cmd;
 
@@ -182,31 +183,29 @@ int	main(int argc, char **argv, char **env)
 	g_exit_status = 0;
 	if (argc != 1)
 		return (1);
-	// if (init_env(&minishell.list_env, env))
-	// {
-	// 	ft_lstclear(&minishell.list_env, free);
-	// 	return (1);
-	// }
+	if (init_env(&list_env, env))
+	{
+		ft_lstclear(&list_env, free);
+		return (1);
+	}
 	while (1)
 	{
 		cmd = readline("minishell-1.0$ ");
 		if (!cmd)
 			return (0);
-		if (parsing(cmd, &minishell.cmd_separated_by_pipes,
-				&minishell.tokens, &minishell.list_env))
+		if (parsing(cmd, &list_env, &ex_cmd))
 		{
-			puts("хуйня в парсере");
+			puts("проблема в парсере");
 			return (1);
 		}
 		add_history(cmd);
 		free(cmd);
-		connection_of_parts(&ex_cmd, minishell.tokens, minishell.list_env);
-		ms_init_env(env, ex_cmd);
-		ft_lstclear(&minishell.tokens, free);
-		ft_lstclear(&minishell.list_env, free);
-		ft_lstclear(&minishell.cmd_separated_by_pipes, free);
+		// ms_init_env(env, ex_cmd);
+		// ft_lstclear(&minishell.tokens, free);
+		// ft_lstclear(&minishell.list_env, free);
+		// ft_lstclear(&minishell.cmd_separated_by_pipes, free);
 		// ex_cmd = init_list(ex_cmd, env, cmd);
-		ft_exec(ex_cmd);
+		// ft_exec(ex_cmd);
 		// while (minishell.list_env)/*удалить*/
 		// {
 		// 	printf("TOKEN = %s\n", minishell.list_env->content);
@@ -228,13 +227,13 @@ int	main(int argc, char **argv, char **env)
 		// int k = 1;
 		// while (ex_cmd)/*удалить*/
 		// {
-		// 	// printf("LIST = %d\n", k);
-		// 	// for(int i = 0; ex_cmd->argv[i]; i++)
-		// 	// 	printf("argv = %s\n", ex_cmd->argv[i]);
-		// 	// for(int i = 0; ex_cmd->file[i]; i++)
-		// 	// 	printf("file = %s\n", ex_cmd->file[i]);
-		// 	for(int i = 0; ex_cmd->env[i]; i++)
-		// 		printf("%s\n", ex_cmd->env[i]);
+		// 	printf("LIST = %d\n", k);
+		// 	for(int i = 0; ex_cmd->argv[i]; i++)
+		// 		printf("argv = %s\n", ex_cmd->argv[i]);
+		// 	for(int i = 0; ex_cmd->file[i]; i++)
+		// 		printf("file = %s\n", ex_cmd->file[i]);
+		// 	// for(int i = 0; ex_cmd->env[i]; i++)
+		// 	// 	printf("%s\n", ex_cmd->env[i]);
 		// 	ex_cmd = ex_cmd->next;
 		// 	k++;
 		// 	puts("\n");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: medeana <medeana@student.42.fr>            +#+  +:+       +#+        */
+/*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 13:45:56 by modysseu          #+#    #+#             */
-/*   Updated: 2022/03/02 15:31:18 by medeana          ###   ########.fr       */
+/*   Updated: 2022/03/02 20:59:02 by modysseu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ typedef struct s_cmd
 	struct s_cmd	*prev;
 }				t_cmd;
 
-typedef struct s_shell
-{
-	t_list		*cmd_separated_by_pipes;
-	t_list		*tokens;
-	t_list		*list_env;
-}				t_shell;
+// typedef struct s_shell
+// {
+// 	// t_list		*cmd_separated_by_pipes;
+// 	t_list		*tokens;
+// 	// t_list		*list_env;
+// }				t_shell;
 
 /*library*/
 int	ft_lstsize(t_list *lst);
@@ -97,8 +97,8 @@ char	*ft_strnstr(const char	*big, const char *little, size_t len);
 
 
 
-int		parsing(char *cmd, t_list **cmd_separated_by_pipes, t_list **tokens, t_list **list_env);
-int		tokenizer(t_list **list, t_list **tokens);
+int	parsing(char *cmd, t_list **list_env, t_cmd **ex_cmd);
+int tokenizer(t_list **cmd_separated_by_pipes, t_list **tokens);
 int 	token_processing(t_list	**tokens);
 void	quote_status(char ch, int *quote);
 int		word_modif(t_list **tokens, t_list **list_env);
@@ -116,7 +116,6 @@ char	*ft_itoa(int n);
 // int	ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_atoi(const char *str);
 void	*ft_memset(void *b, int c, size_t len);
-void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstadd_back(t_list **lst, t_list *new);
 char	*ft_strdup(const char *s1);
@@ -126,7 +125,6 @@ int	ft_strcmp(const char *s1, const char *s2);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	*ft_memset(void *b, int c, size_t len);
-void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstadd_back(t_list **lst, t_list *new);
 char	*ft_strdup(const char *s1);
@@ -154,8 +152,6 @@ char	**copy_envp(char **env);
 
 
 
-int		parsing(char *cmd, t_list **cmd_separated_by_pipes, t_list **tokens, t_list **list_env);
-int		tokenizer(t_list **list, t_list **tokens);
 int 	token_processing(t_list	**tokens);
 void	quote_status(char ch, int *quote);
 int		word_modif(t_list **tokens, t_list **list_env);

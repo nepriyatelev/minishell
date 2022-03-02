@@ -6,7 +6,7 @@
 /*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 19:08:24 by modysseu          #+#    #+#             */
-/*   Updated: 2022/02/25 17:03:28 by modysseu         ###   ########.fr       */
+/*   Updated: 2022/03/02 21:12:05 by modysseu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ void	quote_status(char ch, int *quote) //проверка статуса кав�
 
 int	separation_by_pipes(char *cmd, t_list **cmd_list) //разделение по пайпам
 {
-	int		i;
-	int		j;
-	int		quote;
+	int	i;
+	int	j;
+	int	quote;
 
 	i = 0;
 	j = 0;
@@ -94,39 +94,48 @@ int	separation_by_pipes(char *cmd, t_list **cmd_list) //разделение п�
 		if ((cmd[j] == '|' && quote == 0))
 		{
 			if (i != j)
-				ft_lstadd_back(cmd_list, ft_lstnew(ft_substr(cmd, i, j - i))); // проверить на NULL
-			ft_lstadd_back(cmd_list, ft_lstnew(ft_strdup("|"))); // здесь добавляет пайпы, но возможно это не надо и проверить на NULL
+				ft_lstadd_back(cmd_list, ft_lstnew(ft_substr(cmd, i, j - i))); //нет проверки NULL
+			ft_lstadd_back(cmd_list, ft_lstnew(ft_strdup("|")));//нет проверки NULL
 			i = j + 1;
 		}
 		if (cmd[j + 1] == '\0' && cmd[j] != '|')
-			ft_lstadd_back(cmd_list, ft_lstnew(ft_substr(cmd, i, (j + 1 - i)))); // проверить на NULL
+			ft_lstadd_back(cmd_list, ft_lstnew(ft_substr(cmd, i, (j + 1 - i))));//нет проверки NULL
 		j++;
 	}
 	return (0);
 }
 
-int	parsing(char *cmd, t_list **cmd_separated_by_pipes, t_list **tokens, t_list **list_env)
+int	parsing(char *cmd, t_list **list_env, t_cmd **ex_cmd)
 {
+	t_list	*cmd_separated_by_pipes;
+	t_list	*tokens;
+
+	cmd_separated_by_pipes = NULL;
+	tokens = NULL;
 	if (unclose_quote(cmd))
 	{
 		write(2, "minishell: miss quote\n", 23);
+		free(cmd);
 		return (1);
 	}
 	if (check_only_pipe(cmd))
+	{
+		free(cmd);
 		return (1);
-	if (separation_by_pipes(cmd, cmd_separated_by_pipes))
-		printf("%s\n", "какая-то проблема с разделением по пайпам");
-		/*free()*/
-	if (tokenizer(cmd_separated_by_pipes, tokens))
-		printf("%s\n", "какая-то проблема с токенайзером");
-		/*free()*/
-	if (word_modif(tokens, list_env))
+	}
+	if (separation_by_pipes(cmd, &cmd_separated_by_pipes))
+	{
+		// ft_lstclear(&cmd_separated_by_pipes, free);
+		return (1);
+	}
+	if (tokenizer(&cmd_separated_by_pipes, &tokens))
+		return (1);
+	ft_lstclear(&cmd_separated_by_pipes, free);
+	if (word_modif(&tokens, list_env))
 		printf("%s\n", "какая-то проблема с редактированием строки");
-		/*free()*/
-	// if (org_argv(g_minishell.tokens))			// сохраняет немного не туда
-	// 	printf("%s\n", "какая-то проблема с arg");
-		/*free()*/
-	// for(int i = 0; i < 5; i++)
-	// 	printf("ARGV = %s\n", g_minishell.argv[i]);
+	connection_of_parts(ex_cmd, tokens, *list_env);
+	ft_lstclear(&tokens, free);
+	ft_lstclear(list_env, free);
+	// ft_lstclear(&cmd_separated_by_pipes, free);
 	return (0);
 }

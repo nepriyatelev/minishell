@@ -6,7 +6,7 @@
 /*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 15:55:26 by modysseu          #+#    #+#             */
-/*   Updated: 2022/02/25 17:15:56 by modysseu         ###   ########.fr       */
+/*   Updated: 2022/03/02 21:19:52 by modysseu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ int create_tokens(char *str, t_list **tokens)
 	j = 0;
 	quote = 0;
 	br = 0;
-	if (!str)
-		return (1);
+	// if (!str)
+	// 	return (1);
 	while (str[j])
 	{
 		while (ft_isspace(str[j]) && str[j])
@@ -100,9 +100,9 @@ int create_tokens(char *str, t_list **tokens)
 			}
 		}
 		if (i != j)
-				ft_lstadd_back(tokens, ft_lstnew(ft_substr(str, i, j - i))); // проверить на NULL
+			ft_lstadd_back(tokens, ft_lstnew(ft_substr(str, i, j - i))); //нет проверки NULL
 	}
-		create_type(tokens);
+	create_type(tokens);
 	return (0);
 }
 
@@ -162,36 +162,36 @@ void create_file_type(t_list **tokens) //расставил типы после 
 
 int tokens_type_error(t_list **tokens) // проверка что после < << > >> | идет аргумент
 {
-	t_list *tmp;
+	t_list *step;
 	int		flag;
-	tmp = *tokens;
+	step = *tokens;
 	flag = 0;
-	while (tmp)
+	while (step)
 	{
-		if ((tmp->type == FILE_IN || tmp->type == HERE_DOC			\
-			|| tmp->type == FILE_OUT || tmp->type == FILE_OUT_SUR	\
-			|| tmp->type == PIPE || tmp->type == NONE) && flag == 0)
+		if ((step->type == FILE_IN || step->type == HERE_DOC
+			|| step->type == FILE_OUT || step->type == FILE_OUT_SUR
+			|| step->type == NONE) && flag == 0)
 			flag = 1;
-		else if (flag == 1 && tmp->content)
+		else if (flag == 1 && step->content)
 		{
-			if (tmp->type == FILE_IN || tmp->type == HERE_DOC			\
-				|| tmp->type == FILE_OUT || tmp->type == FILE_OUT_SUR	\
-				|| tmp->type == PIPE || tmp->type == NONE)
-				return (ret_file_without_obj(tmp->type));
+			if (step->type == FILE_IN || step->type == HERE_DOC
+				|| step->type == FILE_OUT || step->type == FILE_OUT_SUR
+				|| step->type == PIPE || step->type == NONE)
+				return (ret_file_without_obj(step->type));
 			flag = 0;
 		}
-		tmp = tmp->next;
+		step = step->next;
 	}
 		if (flag == 1)
 			return (ret_file_without_obj(NONE));
 	return (0);
 }
 
-int tokenizer(t_list **cmd_list, t_list **tokens)
+int tokenizer(t_list **cmd_separated_by_pipes, t_list **tokens)
 {
 	t_list	*step;
 
-	step = *cmd_list;
+	step = *cmd_separated_by_pipes;
 	while (step)
 	{
 		if (create_tokens(step->content, tokens))

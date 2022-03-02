@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: medeana <medeana@student.42.fr>            +#+  +:+       +#+        */
+/*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/15 16:26:59 by modysseu          #+#    #+#             */
-/*   Updated: 2022/02/27 19:36:55 by medeana          ###   ########.fr       */
+/*   Created: 2022/02/02 16:24:51 by modysseu          #+#    #+#             */
+/*   Updated: 2022/02/02 16:25:11 by modysseu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+char	*ft_strncpy(char *dst, char *src, int n)
 {
-	t_list	*f_element;
-	t_list	*n_element;
+	int	i;
 
-	if (lst && *lst)
+	i = 0;
+	while (src[i] && i < n)
 	{
-		f_element = *lst;
-		while (f_element)
-		{
-			n_element = f_element->next;
-			ft_lstdelone(f_element, (*del));
-			f_element = n_element;
-		}
+		dst[i] = src[i];
+		i++;
 	}
-	*lst = NULL;
+	dst[i] = '\0';
+	return (dst);
 }

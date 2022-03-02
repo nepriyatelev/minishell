@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ms_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: medeana <medeana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/15 16:26:59 by modysseu          #+#    #+#             */
-/*   Updated: 2022/02/27 19:36:55 by medeana          ###   ########.fr       */
+/*   Created: 2022/02/21 14:35:16 by medeana           #+#    #+#             */
+/*   Updated: 2022/02/21 14:35:29 by medeana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+int	ms_pwd(void)
 {
-	t_list	*f_element;
-	t_list	*n_element;
+	char	c[PATH_MAX];
 
-	if (lst && *lst)
-	{
-		f_element = *lst;
-		while (f_element)
-		{
-			n_element = f_element->next;
-			ft_lstdelone(f_element, (*del));
-			f_element = n_element;
-		}
-	}
-	*lst = NULL;
+	if (getcwd(c, sizeof(c)) == NULL)
+		return (1);
+	printf("%s\n", c);
+	return (0);
 }

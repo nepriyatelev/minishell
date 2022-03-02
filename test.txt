@@ -1,15 +1,1 @@
-exho$USER
-exho$USER'$USER'
-$USERecho$USER
-exho$USER'$USER'"$USER"
-exho$USER'$USER'"'$USER'"
-exho$USER'$USER'"''$USER''"
-econ$USER''$USER'''"$PWD"'"""$PWD"""
-"""""""""""""""""$PWDf"""""""""""""""""
-"""""""""""""""""$PWD $USER"""""""""""""""""
-"""""""""""""""""'$PWD $USER'"""""""""""""""""
-"$USER$USER"$USER""
-'$USER$USERUSER'"USER$USER$USER23'''"''$USER"'''"
-''NULL$USER'''$PWD'''"USER$$$$$USER"
-''NULL$USER'''$PWD'''"USER$$$$$USER"
-$USER" ''''''''     ""       ' '    f  ""UERF"
+/Users/medeana/Downloads/Новая папка/minishell

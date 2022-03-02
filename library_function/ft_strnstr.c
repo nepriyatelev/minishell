@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: medeana <medeana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/15 16:26:59 by modysseu          #+#    #+#             */
-/*   Updated: 2022/02/27 19:36:55 by medeana          ###   ########.fr       */
+/*   Created: 2022/02/27 18:39:55 by medeana           #+#    #+#             */
+/*   Updated: 2022/02/27 19:21:26 by medeana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+char	*ft_strnstr(const char	*big, const char *little, size_t len)
 {
-	t_list	*f_element;
-	t_list	*n_element;
+	size_t	i;
+	size_t	j;
 
-	if (lst && *lst)
+	i = 0;
+	if (little[i] == '\0')
+		return ((char *)big);
+	while (big[i] && i < len)
 	{
-		f_element = *lst;
-		while (f_element)
+		j = 0;
+		while (big[i + j] == little[j] && i + j < len)
 		{
-			n_element = f_element->next;
-			ft_lstdelone(f_element, (*del));
-			f_element = n_element;
+			if (little[j + 1] == '\0')
+				return ((char *)big + i);
+			j++;
 		}
+		i++;
 	}
-	*lst = NULL;
+	return (0);
 }

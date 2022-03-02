@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: medeana <medeana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/15 16:26:59 by modysseu          #+#    #+#             */
-/*   Updated: 2022/02/27 19:36:55 by medeana          ###   ########.fr       */
+/*   Created: 2022/02/27 18:38:11 by medeana           #+#    #+#             */
+/*   Updated: 2022/02/27 18:38:50 by medeana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+char	*ft_strchr(const char *s, int c)
 {
-	t_list	*f_element;
-	t_list	*n_element;
+	char	*str;
 
-	if (lst && *lst)
+	str = (char *)s;
+	while (*str != c)
 	{
-		f_element = *lst;
-		while (f_element)
-		{
-			n_element = f_element->next;
-			ft_lstdelone(f_element, (*del));
-			f_element = n_element;
-		}
+		if (*str == '\0')
+			return (NULL);
+		str++;
 	}
-	*lst = NULL;
+	return (str);
 }

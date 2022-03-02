@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   connection_of_parts.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: medeana <medeana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 17:18:24 by modysseu          #+#    #+#             */
-/*   Updated: 2022/02/27 18:22:13 by modysseu         ###   ########.fr       */
+/*   Updated: 2022/03/02 17:14:05 by medeana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ void	ft_matrix_free(char **str)
 
 void	connection_of_parts(t_cmd **ex_cmd, t_list *tokens, t_list *env)
 {
+
 	t_list	*step;
 	char	**argv;
 	char	**file;

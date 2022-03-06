@@ -6,7 +6,7 @@
 /*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 13:45:24 by modysseu          #+#    #+#             */
-/*   Updated: 2022/03/02 20:23:03 by modysseu         ###   ########.fr       */
+/*   Updated: 2022/03/06 16:45:32 by modysseu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,10 +219,10 @@ int	main(int argc, char **argv, char **env)
 		// 	minishell.tokens = minishell.tokens->next;
 		// }
 		// printf("TOKEN = %s\t TYPE = %d\n", minishell.tokens->content, minishell.tokens->type);
-		// while (minishell.cmd_separated_by_pipes)/*удалить*/
+		// while (cmd_separated_by_pipes)/*удалить*/
 		// {
-		// 	printf("TOKEN = %s\n", minishell.cmd_separated_by_pipes->content);
-		// 	minishell.cmd_separated_by_pipes = minishell.cmd_separated_by_pipes->next;
+		// 	printf("TOKEN = %s\n", cmd_separated_by_pipes->content);
+		// 	cmd_separated_by_pipes = cmd_separated_by_pipes->next;
 		// }
 		// int k = 1;
 		// while (ex_cmd)/*удалить*/

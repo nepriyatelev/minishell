@@ -6,11 +6,11 @@
 /*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 16:13:11 by modysseu          #+#    #+#             */
-/*   Updated: 2022/03/11 16:00:13 by modysseu         ###   ########.fr       */
+/*   Updated: 2022/03/12 20:58:48 by modysseu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	increment_shlvl(t_list **list_env)
 {
@@ -30,7 +30,7 @@ int	increment_shlvl(t_list **list_env)
 			free(step->content);
 			step->content = ft_strjoin("SHLVL=", ft_itoa(shlvl));
 			if (step->content == NULL)
-				return (1);
+				return (-1);
 			return (0);
 		}
 		step = step->next;
@@ -44,8 +44,12 @@ int	init_env(t_list **list_env, char **env)
 
 	i = 0;
 	while (env[i])
-		ft_lstadd_back(list_env, ft_lstnew(ft_strdup(env[i++]))); //проверку на NULL
+	{
+		if (new_lst_back(ft_strdup(env[i]), list_env))
+			return (-1);
+		i++;
+	}
 	if (increment_shlvl(list_env))
-		return (1);
+		return (-1);
 	return (0);
 }

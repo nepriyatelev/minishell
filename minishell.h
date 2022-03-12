@@ -6,7 +6,7 @@
 /*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 13:45:56 by modysseu          #+#    #+#             */
-/*   Updated: 2022/03/11 16:00:34 by modysseu         ###   ########.fr       */
+/*   Updated: 2022/03/12 20:59:33 by modysseu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,27 @@ int		checking_the_token_type_error(t_list **tokens);
 ** parser/creating_tokens/file_type_assignment.c
 */
 void	file_type_assignment(t_list **tokens);
-
-
+/*
+** parser/editing_tokens/editing_tokens.c
+*/
 int		editing_tokens(t_list **tokens, t_list **list_env);
-char	*if_env(char *str, int *j, t_list **list_env);
+/*
+** parser/editing_tokens/editing_tokens_utilities.c
+*/
+int		modification_of_tokens(t_list *tokens, t_list **list_env);
+/*
+** parser/editing_tokens/if_env_utilities.c
+*/
+char	*get_env(char *str, t_list **list_env);
+void	get_len_var_env(char *str, int *dollar,
+			int *question_mark, int *len_var);
+/*
+** parser/editing_tokens/if_env.c
+*/
+char	*if_env(char *str, int *j, t_list **list_env, int dollar);
+/*
+** parser/editing_tokens/init_env.c
+*/
 int		init_env(t_list **list_env, char **env);
+
 #endif

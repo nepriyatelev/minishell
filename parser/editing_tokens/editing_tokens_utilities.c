@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   editing_tokens.c                                   :+:      :+:    :+:   */
+/*   editing_tokens_utilities.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/07 15:50:37 by modysseu          #+#    #+#             */
-/*   Updated: 2022/03/11 20:16:53 by modysseu         ###   ########.fr       */
+/*   Created: 2022/03/12 17:04:44 by modysseu          #+#    #+#             */
+/*   Updated: 2022/03/12 19:09:46 by modysseu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-int	connecting_strings(int i, int j, char **new_str, char *content)
+static int	connecting_strings(int i, int j, char **new_str, char *content)
 {
 	if (i < j && content[i] != '\"')
 		*new_str = ft_strjoin(*new_str, ft_substr(content, i, j - i));
@@ -23,7 +23,7 @@ int	connecting_strings(int i, int j, char **new_str, char *content)
 	return (0);
 }
 
-int	if_two_quotation_marks(int *j, char **new_str,
+static int	if_two_quotation_marks(int *j, char **new_str,
 			char *content, t_list **list_env)
 {
 	int	i;
@@ -36,7 +36,8 @@ int	if_two_quotation_marks(int *j, char **new_str,
 			if (i < *j)
 				*new_str = ft_strjoin(*new_str,
 						ft_substr(content, i, (*j - i)));
-			*new_str = ft_strjoin(*new_str, if_env(content + *j, j, list_env));
+			*new_str = ft_strjoin(*new_str, if_env(content + *j, j,
+						list_env, 0));
 			if (*new_str == NULL)
 				return (-1);
 			i = *j;
@@ -52,7 +53,7 @@ int	if_two_quotation_marks(int *j, char **new_str,
 	return (0);
 }
 
-int	if_one_quotation_mark(int *j, char **new_str, char *content)
+static int	if_one_quotation_mark(int *j, char **new_str, char *content)
 {
 	int	i;
 
@@ -68,7 +69,7 @@ int	if_one_quotation_mark(int *j, char **new_str, char *content)
 	return (0);
 }
 
-int	if_there_are_no_quotes(int *j, char **new_str,
+static int	if_there_are_no_quotes(int *j, char **new_str,
 			char *content, t_list **list_env)
 {
 	int	i;
@@ -80,7 +81,8 @@ int	if_there_are_no_quotes(int *j, char **new_str,
 		{
 			if (i < *j)
 				*new_str = ft_strjoin(*new_str, ft_substr(content, i, *j - i));
-			*new_str = ft_strjoin(*new_str, if_env(content + *j, j, list_env));
+			*new_str = ft_strjoin(*new_str, if_env(content + *j, j,
+						list_env, 0));
 			if (*new_str == NULL)
 				return (-1);
 			i = *j;
@@ -102,6 +104,8 @@ int	modification_of_tokens(t_list *tokens, t_list **list_env)
 	int		j;
 
 	new_str = ft_strdup("");
+	if (new_str == NULL)
+		return (-1);
 	j = 0;
 	while (tokens->content[j])
 	{
@@ -118,22 +122,5 @@ int	modification_of_tokens(t_list *tokens, t_list **list_env)
 	}
 	free(tokens->content);
 	tokens->content = new_str;
-	return (0);
-}
-
-int	editing_tokens(t_list **tokens, t_list **list_env)
-{
-	t_list	*step;
-
-	step = *tokens;
-	while (step)
-	{
-		if (step->content != NULL)
-		{
-			if (modification_of_tokens(step, list_env))
-				return (-1);
-		}
-		step = step->next;
-	}
 	return (0);
 }

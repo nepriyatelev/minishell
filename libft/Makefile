@@ -6,7 +6,7 @@
 #    By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 14:44:45 by modysseu          #+#    #+#              #
-#    Updated: 2022/03/11 16:01:11 by modysseu         ###   ########.fr        #
+#    Updated: 2022/03/13 16:20:52 by modysseu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,8 @@ SRCS	=	ft_atoi.c\
 			ft_lstlast.c\
 			ft_lstnew.c\
 			ft_lstsize.c\
-			ft_lstmap.c
+			ft_lstmap.c\
+			ft_matrix_free.c
 
 HEADER	=	libft.h
 

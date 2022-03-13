@@ -6,7 +6,7 @@
 /*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 22:01:27 by modysseu          #+#    #+#             */
-/*   Updated: 2022/03/12 20:48:39 by modysseu         ###   ########.fr       */
+/*   Updated: 2022/03/13 18:13:37 by modysseu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,3 @@ char	*if_env(char *str, int *j, t_list **list_env, int dollar)
 	}
 	return (new_str);
 }
-

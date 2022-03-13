@@ -6,7 +6,7 @@
 /*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:58:04 by modysseu          #+#    #+#             */
-/*   Updated: 2022/03/09 14:27:08 by modysseu         ###   ########.fr       */
+/*   Updated: 2022/03/13 16:20:37 by modysseu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,7 @@ t_list		*ft_lstlast(t_list *lst);
 t_list		*ft_lstnew(char *content);
 int			ft_lstsize(t_list *lst);
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+void		ft_matrix_free(char **str);
 
 #endif

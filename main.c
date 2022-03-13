@@ -6,7 +6,7 @@
 /*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 13:45:24 by modysseu          #+#    #+#             */
-/*   Updated: 2022/03/11 15:58:01 by modysseu         ###   ########.fr       */
+/*   Updated: 2022/03/13 18:01:06 by modysseu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,20 +67,21 @@ int	main(int argc, char **argv, char **env)
 		// 	printf("TOKEN = %s\n", cmd_separated_by_pipes->content);
 		// 	cmd_separated_by_pipes = cmd_separated_by_pipes->next;
 		// }
-		// int k = 1;
-		// while (ex_cmd)/*удалить*/
-		// {
-		// 	printf("LIST = %d\n", k);
-		// 	for(int i = 0; ex_cmd->argv[i]; i++)
-		// 		printf("argv = %s\n", ex_cmd->argv[i]);
-		// 	for(int i = 0; ex_cmd->file[i]; i++)
-		// 		printf("file = %s\n", ex_cmd->file[i]);
-		// 	// for(int i = 0; ex_cmd->env[i]; i++)
-		// 	// 	printf("%s\n", ex_cmd->env[i]);
-		// 	ex_cmd = ex_cmd->next;
-		// 	k++;
-		// 	puts("\n");
-		// }
+		int k = 1;
+		while (ex_cmd)/*удалить*/
+		{
+			printf("LIST = %d\n", k);
+			for(int i = 0; ex_cmd->argv[i]; i++)
+				printf("argv = %s\n", ex_cmd->argv[i]);
+			for(int i = 0; ex_cmd->file[i]; i++)
+				printf("file = %s\n", ex_cmd->file[i]);
+			// for(int i = 0; ex_cmd->env[i]; i++)
+			// 	printf("%s\n", ex_cmd->env[i]);
+			ex_cmd = ex_cmd->next;
+			k++;
+			puts("\n");
+		}
 	}
+	ft_lstclear(&list_env, free);
 	return (0);
 }

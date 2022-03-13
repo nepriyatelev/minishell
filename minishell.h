@@ -6,7 +6,7 @@
 /*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 13:45:56 by modysseu          #+#    #+#             */
-/*   Updated: 2022/03/12 20:59:33 by modysseu         ###   ########.fr       */
+/*   Updated: 2022/03/13 20:17:22 by modysseu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct s_cmd
 	pid_t			pid;
 	char			**argv;
 	char			**file;
-	char			**env;
 	int				fd[2];
 	struct s_cmd	*next;
 	struct s_cmd	*prev;
@@ -111,4 +110,5 @@ char	*if_env(char *str, int *j, t_list **list_env, int dollar);
 */
 int		init_env(t_list **list_env, char **env);
 
+int		connection_of_parts(t_cmd **ex_cmd, t_list *tokens, char **argv, char **file);
 #endif

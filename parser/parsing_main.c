@@ -6,7 +6,7 @@
 /*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 19:08:24 by modysseu          #+#    #+#             */
-/*   Updated: 2022/03/11 19:00:23 by modysseu         ###   ########.fr       */
+/*   Updated: 2022/03/13 20:17:31 by modysseu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,11 @@ int	parsing_main(char *cmd, t_list **list_env, t_cmd **ex_cmd)
 
 	cmd_separated_by_pipes = NULL;
 	tokens = NULL;
-	(void)ex_cmd;
+	// if (*ex_cmd != NULL) добавь функции в либу чтобы зафришить лист, чтобы зафиршить 2-мерный массив есть функция в либе void	ft_matrix_free(char **str)
+	// {
+	// 	free_job_lst(*ex_cmd);
+	// 	*ex_cmd = NULL;
+	// }
 	if ((unclose_quote(cmd, 0, 0)) || (error_pipe(cmd)))
 		return (0);
 	if (separation_by_pipes(cmd, &cmd_separated_by_pipes))
@@ -59,29 +63,17 @@ int	parsing_main(char *cmd, t_list **list_env, t_cmd **ex_cmd)
 	{
 		ft_lstclear(&cmd_separated_by_pipes, free);
 		ft_lstclear(&tokens, free);
-		return (1);
+		return (-1);
 	}
 	if (editing_tokens(&tokens, list_env))
 	{
 		ft_lstclear(&tokens, free);
-		return (1);
+		return (-1);
 	}
-	// connection_of_parts(ex_cmd, tokens, *list_env);
-	// ft_lstclear(&tokens, free);
-	// ft_lstclear(list_env, free);
-	// ft_lstclear(&cmd_separated_by_pipes, free);
-	// while (cmd_separated_by_pipes)
-	// {
-	// 	printf("TOKEN = %s\n", cmd_separated_by_pipes->content);
-	// 	cmd_separated_by_pipes = cmd_separated_by_pipes->next;
-	// }
-	while (tokens)/*удалить*/
-	{
-		printf("TOKEN = %s\t TYPE = %d\n", tokens->content, tokens->type);
-		tokens = tokens->next;
-	}
-	ft_lstclear(&cmd_separated_by_pipes, free);
+	if (connection_of_parts(ex_cmd, tokens, NULL, NULL))
+		return (-1);
 	ft_lstclear(&tokens, free);
 	// ft_lstclear(list_env, free);
+	ft_lstclear(&cmd_separated_by_pipes, free);
 	return (0);
 }

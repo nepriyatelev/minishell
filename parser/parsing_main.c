@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: medeana <medeana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 19:08:24 by modysseu          #+#    #+#             */
-/*   Updated: 2022/03/14 18:38:38 by modysseu         ###   ########.fr       */
+/*   Updated: 2022/03/14 21:05:11 by medeana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ int	parsing_main(char *cmd, t_list **list_env, t_cmd **ex_cmd)
 	ret_value = 0;
 	cmd_separated_by_pipes = NULL;
 	tokens = NULL;
-	// if (*ex_cmd != NULL) добавь функции в либу чтобы зафришить лист, чтобы зафиршить 2-мерный массив есть функция в либе void	ft_matrix_free(char **str)
-	// {
-	// 	free_job_lst(*ex_cmd);
-	// 	*ex_cmd = NULL;
-	// }
+	if (*ex_cmd != NULL)
+	{
+		free_job_lst(*ex_cmd);
+		*ex_cmd = NULL;
+	}
 	if (((unclose_quote(cmd, 0, 0)) || (error_pipe(cmd))) && ret_value != -1)
 		ret_value = 0;
 	if (separation_by_pipes(cmd, &cmd_separated_by_pipes) && ret_value != -1)

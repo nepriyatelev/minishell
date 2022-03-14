@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: medeana <medeana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:58:04 by modysseu          #+#    #+#             */
-/*   Updated: 2022/03/13 16:20:37 by modysseu         ###   ########.fr       */
+/*   Updated: 2022/03/14 20:58:29 by medeana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ t_list		*ft_lstlast(t_list *lst);
 t_list		*ft_lstnew(char *content);
 int			ft_lstsize(t_list *lst);
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+char		*ft_strjoin_free_s1(char *s1, char const *s2);
+int			ft_isllong(char *str);
+long long	ft_atoll(const char *nptr);
 
 void		ft_matrix_free(char **str);
 

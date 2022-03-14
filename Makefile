@@ -6,13 +6,14 @@
 #    By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/08 19:16:05 by modysseu          #+#    #+#              #
-#    Updated: 2022/03/13 20:33:38 by modysseu         ###   ########.fr        #
+#    Updated: 2022/03/14 18:27:25 by modysseu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
 SRC			=	main.c\
+				parser/connection_of_parts/connection_of_parts_utilities.c\
 				parser/connection_of_parts/connection_of_parts.c\
 				parser/creating_tokens/checking_the_token_type_error.c\
 				parser/creating_tokens/creating_a_token_type.c\
@@ -26,7 +27,6 @@ SRC			=	main.c\
 				parser/error_cmd.c\
 				parser/parser_utilities.c\
 				parser/parsing_main.c\
-				connection_of_parts1.c\
 
 HEADER		=	minishell.h
 

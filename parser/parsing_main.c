@@ -6,7 +6,7 @@
 /*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 19:08:24 by modysseu          #+#    #+#             */
-/*   Updated: 2022/03/13 20:17:31 by modysseu         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:38:38 by modysseu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ int	parsing_main(char *cmd, t_list **list_env, t_cmd **ex_cmd)
 {
 	t_list	*cmd_separated_by_pipes;
 	t_list	*tokens;
+	int		ret_value;
 
+	ret_value = 0;
 	cmd_separated_by_pipes = NULL;
 	tokens = NULL;
 	// if (*ex_cmd != NULL) добавь функции в либу чтобы зафришить лист, чтобы зафиршить 2-мерный массив есть функция в либе void	ft_matrix_free(char **str)
@@ -52,28 +54,17 @@ int	parsing_main(char *cmd, t_list **list_env, t_cmd **ex_cmd)
 	// 	free_job_lst(*ex_cmd);
 	// 	*ex_cmd = NULL;
 	// }
-	if ((unclose_quote(cmd, 0, 0)) || (error_pipe(cmd)))
-		return (0);
-	if (separation_by_pipes(cmd, &cmd_separated_by_pipes))
-	{
-		ft_lstclear(&cmd_separated_by_pipes, free);
-		return (-1);
-	}
-	if (creating_tokens(&cmd_separated_by_pipes, &tokens))
-	{
-		ft_lstclear(&cmd_separated_by_pipes, free);
-		ft_lstclear(&tokens, free);
-		return (-1);
-	}
-	if (editing_tokens(&tokens, list_env))
-	{
-		ft_lstclear(&tokens, free);
-		return (-1);
-	}
-	if (connection_of_parts(ex_cmd, tokens, NULL, NULL))
-		return (-1);
+	if (((unclose_quote(cmd, 0, 0)) || (error_pipe(cmd))) && ret_value != -1)
+		ret_value = 0;
+	if (separation_by_pipes(cmd, &cmd_separated_by_pipes) && ret_value != -1)
+		ret_value = -1;
+	if (creating_tokens(&cmd_separated_by_pipes, &tokens) && ret_value != -1)
+		ret_value = -1;
+	if (editing_tokens(&tokens, list_env) && ret_value != -1)
+		ret_value = -1;
+	connection_of_parts(ex_cmd, tokens, NULL, NULL);
 	ft_lstclear(&tokens, free);
-	// ft_lstclear(list_env, free);
 	ft_lstclear(&cmd_separated_by_pipes, free);
+	free(cmd);
 	return (0);
 }

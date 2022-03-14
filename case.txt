@@ -12,3 +12,4 @@ echo "$USER$USER"$USER""
 echo '$USER$USERUSER'"USER$USER$USER23'''"''$USER"'''"
 echo ''NULL$USER'''$PWD'''"USER$$$$$USER"
 echo $USER" ''''''''     ""       ' '    f  ""UERF"
+echo $USER | << $PWD | echo < $USER

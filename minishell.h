@@ -6,7 +6,7 @@
 /*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 13:45:56 by modysseu          #+#    #+#             */
-/*   Updated: 2022/03/13 20:17:22 by modysseu         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:26:52 by modysseu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,18 @@ char	*if_env(char *str, int *j, t_list **list_env, int dollar);
 ** parser/editing_tokens/init_env.c
 */
 int		init_env(t_list **list_env, char **env);
-
-int		connection_of_parts(t_cmd **ex_cmd, t_list *tokens, char **argv, char **file);
+/*
+** parser/connection_of_parts/connection_of_parts.c
+*/
+void	ft_copy_argv(char **argv, char *tokens, int type);
+void	ft_copy_file(char **file, char *tokens, int type);
+void	connection_of_parts(t_cmd **ex_cmd, t_list *tokens,
+			char **argv, char **file);
+/*
+** parser/connection_of_parts/connection_of_parts_utilities.c
+*/
+int		type_check(int type);
+t_cmd	*new_ex_cmd(char **argv, char **file);
+void	ex_cmd_add_back(t_cmd **ex_cmd, t_cmd *new);
+void	copy_end(char **argv, char **file, t_cmd **ex_cmd);
 #endif

@@ -6,7 +6,7 @@
 /*   By: medeana <medeana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 13:45:56 by modysseu          #+#    #+#             */
-/*   Updated: 2022/03/14 20:52:03 by medeana          ###   ########.fr       */
+/*   Updated: 2022/03/14 21:48:23 by medeana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@
 # include <sys/wait.h>
 # include <sys/stat.h>
 # include <sys/ioctl.h>
-# include "/Users/medeana/.brew/Cellar/readline/8.1.2/include/readline/readline.h"
-# include "/Users/medeana/.brew/Cellar/readline/8.1.2/include/readline/history.h"
+# include "/Users/medeana/.brew/Cellar/\
+readline/8.1.2/include/readline/readline.h"
+# include "/Users/medeana/.brew/Cellar/\
+readline/8.1.2/include/readline/history.h"
 # include <signal.h>
 # include <dirent.h>
 # include <limits.h>
@@ -44,7 +46,7 @@
 # define PIPE 10			// word == '|'
 # define BUILTIN 11			// word == command
 
-extern	int	g_exit_status;
+extern int	g_exit_status;
 
 typedef struct s_cmd
 {
@@ -61,7 +63,6 @@ typedef struct s_shell
 	char	**env;
 	char	**export;
 }				t_shell;
-
 
 int		main(int argc, char **argv, char **env);
 /*

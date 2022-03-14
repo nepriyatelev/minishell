@@ -6,7 +6,7 @@
 /*   By: medeana <medeana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 14:11:07 by medeana           #+#    #+#             */
-/*   Updated: 2022/03/14 21:19:55 by medeana          ###   ########.fr       */
+/*   Updated: 2022/03/14 21:43:58 by medeana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	ft_newline(int signal)
 	ft_putstr_fd("\n", STDERR_FILENO);
 	rl_on_new_line();
 	rl_replace_line("", 0);
-	rl_redisplay();
 	g_exit_status = 130;
 }
 
@@ -46,9 +45,7 @@ void	ctrl_d(char *line, t_shell *shell)
 {
 	printf("exit\n");
 	free(line);
-	if (shell->env)
-		ft_free_tab(shell->env);
-	if (shell->export)
-		ft_free_tab(shell->export);
+	ft_free_tab(shell->env);
+	ft_free_tab(shell->export);
 	exit(0);
 }

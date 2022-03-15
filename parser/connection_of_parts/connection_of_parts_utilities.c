@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   connection_of_parts_utilities.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: medeana <medeana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 18:19:40 by modysseu          #+#    #+#             */
-/*   Updated: 2022/03/14 18:25:39 by modysseu         ###   ########.fr       */
+/*   Updated: 2022/03/15 18:09:08 by medeana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static char	**ft_matrix_copy(char **args)
 	char	**copy;
 	int		i;
 
+	i = 0;
 	while (args[i])
 		i++;
 	copy = (char **)malloc(sizeof(char *) * i + 1);

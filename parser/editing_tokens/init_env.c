@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: modysseu <modysseu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: medeana <medeana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 16:13:11 by modysseu          #+#    #+#             */
-/*   Updated: 2022/03/12 20:58:48 by modysseu         ###   ########.fr       */
+/*   Updated: 2022/03/15 18:03:06 by medeana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	increment_shlvl(t_list **list_env)
 {
 	char	*shlvl_value;
 	int		shlvl;
+	char	*cshlvl;
 	t_list	*step;
 
 	step = *list_env;
@@ -28,7 +29,9 @@ int	increment_shlvl(t_list **list_env)
 		if (ft_strncmp("SHLVL", step->content, 5) == 0)
 		{
 			free(step->content);
-			step->content = ft_strjoin("SHLVL=", ft_itoa(shlvl));
+			cshlvl = ft_itoa(shlvl);
+			step->content = ft_strjoin("SHLVL=", cshlvl);
+			free(cshlvl);
 			if (step->content == NULL)
 				return (-1);
 			return (0);

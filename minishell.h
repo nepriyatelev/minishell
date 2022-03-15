@@ -6,7 +6,7 @@
 /*   By: medeana <medeana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 13:45:56 by modysseu          #+#    #+#             */
-/*   Updated: 2022/03/14 21:48:23 by medeana          ###   ########.fr       */
+/*   Updated: 2022/03/15 17:56:45 by medeana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ void	stop_heredoc(int signal);
 void	nothing(int signal);
 void	ft_newline(int signal);
 void	ctrl_c(int signal);
-void	ctrl_d(char *line, t_shell *shell);
+void	ctrl_d(char *line, t_shell *shell, t_list *list);
 void	ft_sort_tab(char **arr);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: medeana <medeana@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/08 19:16:05 by modysseu          #+#    #+#              #
-#    Updated: 2022/03/14 21:09:27 by medeana          ###   ########.fr        #
+#    Updated: 2022/03/15 18:07:35 by medeana          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,9 @@ all : libft $(NAME)
 	stty -ctlecho
 $(NAME) : $(OBJ) 
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME) -L/Users/$(USER)/.brew/Cellar/readline/8.1.2/lib/ -lreadline -L./libft -lft
+
+%.o: %.c $(HEADER) Makefile
+	$(CC) $(FLAGS) -c $< -o $@
 
 libft :
 	make -C libft
